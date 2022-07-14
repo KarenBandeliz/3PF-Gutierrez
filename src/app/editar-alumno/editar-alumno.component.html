@@ -1,0 +1,28 @@
+<form [formGroup]="formulario" (ngSubmit)="editarAlumno($event)">
+<div class="mb-3">
+    Nombre:
+    <input type="text" formControlName="Nombre" />
+</div>
+
+  <div class="text-danger ml-3 justify-content-end" *ngIf="this.formulario.get('Nombre')?.errors?.['minlength']" touched>Obligatorio.>
+    Mínimo 3 caracteres.
+</div>
+
+<div class="mb-3">
+    Apellido: <input type="text" formControlName="apellido" />
+</div>
+
+  <div class="text-danger ml-3 justify-content-end" *ngIf="this.formulario.get('Apellido')?.errors?.['minlength']" touched>Obligatorio>
+    Minimo 4 caracteres.
+</div>
+
+
+<div class="mb-3">Edad:<input type="number" formControlName="Edad" /></div>
+
+  <div class="text-danger ml-3 justify-content-end ng-touched" *ngIf="
+        this.formulario.get('edad')?.errors?.['required']" touched >Obligatorio
+</div>
+
+<button type="submit" class="btn btn-light">Guardar</button>
+
+</form>
