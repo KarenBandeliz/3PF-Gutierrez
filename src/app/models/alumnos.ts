@@ -1,7 +1,6 @@
-export interface alumnos{
-id: number,
-Nombre: string,
-Apellido: string,
-Edad: number
-
+export interface AlumnosI {
+    id: number;
+    Nombre: string;
+    Apellido: string;
+    Edad: number;
 }

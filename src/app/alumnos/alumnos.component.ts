@@ -1,10 +1,9 @@
 import { DataSource } from '@angular/cdk/collections';
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import { alumnos } from '../models/alumnos';
 import { AlumnosServicioService } from '../services/alumnos-servicio.service';
-
+import { AlumnosI } from '../models/alumnos';
+import { MatTableDataSource } from '@angular/material/table';
+import { NuevoAlumnoComponent } from './nuevo-alumno/nuevo-alumno.component';
 
 @Component({
   selector: 'app-alumnos',
@@ -12,34 +11,28 @@ import { AlumnosServicioService } from '../services/alumnos-servicio.service';
   styleUrls: ['./alumnos.component.scss']
 })
 
+
 export class AlumnosComponent implements OnInit {
+listaAlumnos: AlumnosI[] = [];
 
-  listaAlumnos: alumnos[] = [
-    {id: 1, Nombre:'Karen' , Apellido: 'Gutiérrez', Edad: 15 },
-    {id: 2, Nombre:'Edith' , Apellido: 'Pérez', Edad: 18 },
-    {id: 3, Nombre:'Ramses' , Apellido: 'Hernández', Edad: 17 },
-    {id: 4, Nombre:'Luis' , Apellido: 'García', Edad: 15 },
-    {id: 5, Nombre:'Josue' , Apellido: 'López', Edad: 16 },
-  ];
-
-    displayedColumns: string[] = ['id', 'Nombre', 'Apellido', 'Edad', 'acciones'];
+displayedColumns: string[] = ['id', 'Nombre', 'Apellido', 'Edad', 'acciones'];
+dataSource! : MatTableDataSource<any>;
 
 
-    @ViewChild(MatSort) sort!: MatSort;
+constructor(private _alumnosServicioService: AlumnosServicioService) { }
 
-    constructor(private AlumnosServicioService: AlumnosServicioService) {}
-   ngOnInit(): void {
-    this.cargarAlumnos();
-  }
+  ngOnInit(): void {
+  this.cargarAlumnos();
+}  
 
-  cargarAlumnos(){
-    this.listaAlumnos = this.AlumnosServicioService.getAlumno();
-    
-  }
+cargarAlumnos() {
+  this.listaAlumnos = this._alumnosServicioService.getAlumno();
+  this.dataSource = new MatTableDataSource(this.listaAlumnos);  
+}
 
-  eliminarAlumno(){
-    this.listaAlumnos = this.AlumnosServicioService.getAlumno();
-
-    
-  }
+  eliminarAlumno(index : number) {
+  console.log(index);
+  this._alumnosServicioService.eliminarAlumno(index);
+  this.cargarAlumnos();
+}
 }

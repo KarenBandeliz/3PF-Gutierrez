@@ -1,13 +1,27 @@
 table {
-    max-width: 1000px;
-  }
-  
-  table tbody tr {
-  
-    &:hover {
-      cursor: pointer;
-      opacity: 0.9;
-    }
-  
-  }
-  
+    width: 85%;
+    margin-left: 5%;
+    margin-top: 2%;
+}
+th{
+    width: 20%;
+    text-align: center;
+}
+
+td{
+    text-align: center;
+}
+
+th.mat-header-cell {
+    text-align: center;
+}
+mat-toolbar-row{
+    background-color: rgba(205, 247, 247, 0.555);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: x-large;
+    color: rgb(11, 72, 126);
+}
+
+.pointer{
+    cursor: pointer;
+}
