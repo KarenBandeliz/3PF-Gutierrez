@@ -1,34 +1,29 @@
 import { Injectable } from '@angular/core';
 import { AlumnosI } from '../models/alumnos';
+import { Observable } from 'rxjs'
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AlumnosServicioService {
-  listaAlumnos: AlumnosI[] = [
-  {id: 1, Nombre:'Karen' , Apellido: 'Gutiérrez', Edad: 15 },
-  {id: 2, Nombre:'Edith' , Apellido: 'Pérez', Edad: 18 },
-  {id: 3, Nombre:'Ramses' , Apellido: 'Hernández', Edad: 17 },
-  {id: 4, Nombre:'Luis' , Apellido: 'García', Edad: 15 },
-  {id: 5, Nombre:'Omar' , Apellido: 'López', Edad: 16 },
-  
-  ]
+urlAPI= 'https://62eb0894ad2954632597b90c.mockapi.io/api/alumnos';
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) {}
 
-  getAlumno(){
-    return this.listaAlumnos.slice();
+  getAlumno():Observable<AlumnosI>{
+    return this.httpClient.get<AlumnosI>(this.urlAPI + 'users');
   }
-
-  eliminarAlumno(index : number) {
-    this.listaAlumnos.splice(index, 1);
+  
+  eliminarAlumno(id:number) {
+    return this.httpClient.delete(this.urlAPI + 'users/:' + id);
   }
 
   agregarAlumno(alumno: AlumnosI) {
-    this.listaAlumnos.unshift(alumno);
+    return this.httpClient.post<AlumnosI>(this.urlAPI, alumno);
   }
 
-  editarAlumno (alumno: AlumnosI){
-    this.listaAlumnos.unshift(alumno);
-  }
+  editarAlumno (alumno: AlumnosI, id: number){
+    return this.httpClient.put<AlumnosI>(this.urlAPI + id, alumno);
+}
 }

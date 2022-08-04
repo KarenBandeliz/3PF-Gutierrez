@@ -4,6 +4,7 @@ import { AlumnosServicioService } from '../services/alumnos-servicio.service';
 import { AlumnosI } from '../models/alumnos';
 import { MatTableDataSource } from '@angular/material/table';
 import { NuevoAlumnoComponent } from './nuevo-alumno/nuevo-alumno.component';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-alumnos',
@@ -13,26 +14,26 @@ import { NuevoAlumnoComponent } from './nuevo-alumno/nuevo-alumno.component';
 
 
 export class AlumnosComponent implements OnInit {
-listaAlumnos: AlumnosI[] = [];
-
-displayedColumns: string[] = ['id', 'Nombre', 'Apellido', 'Edad', 'acciones'];
-dataSource! : MatTableDataSource<any>;
-
+alumnos: AlumnosI[] = [];
 
 constructor(private _alumnosServicioService: AlumnosServicioService) { }
 
-  ngOnInit(): void {
-  this.cargarAlumnos();
+  ngOnInit() {
+    this._alumnosServicioService.getAlumno();
 }  
 
 cargarAlumnos() {
-  this.listaAlumnos = this._alumnosServicioService.getAlumno();
-  this.dataSource = new MatTableDataSource(this.listaAlumnos);  
+    this._alumnosServicioService.getAlumno().subscribe((data: AlumnosI) => {
+      this.alumnos = data;
+
+})
 }
 
-  eliminarAlumno(index : number) {
-  console.log(index);
-  this._alumnosServicioService.eliminarAlumno(index);
+  eliminarAlumno(id : number) {
+  console.log(id);
+    this._alumnosServicioService.getAlumno().subscribe((id) => {
+    this.alumnos(id);
   this.cargarAlumnos();
+})
 }
 }

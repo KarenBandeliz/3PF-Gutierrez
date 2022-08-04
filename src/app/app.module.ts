@@ -23,6 +23,8 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PanelComponent } from './shared/panel/panel.component';
 import { SharedModule } from './shared/shared.component';
+import { LoginComponent } from './alumnos/login/login.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { SharedModule } from './shared/shared.component';
     EditarAlumnoComponent,
     AlumnosComponent,
     NuevoAlumnoComponent,
+    LoginComponent,
 
   ],
   imports: [
@@ -50,7 +53,8 @@ import { SharedModule } from './shared/shared.component';
     MatGridListModule,
     MatFormFieldModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   exports:[
     BrowserModule,
@@ -66,7 +70,8 @@ import { SharedModule } from './shared/shared.component';
     MatGridListModule,
     MatFormFieldModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
 
   providers: [],

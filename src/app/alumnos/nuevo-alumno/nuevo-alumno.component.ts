@@ -29,9 +29,9 @@ export class NuevoAlumnoComponent implements OnInit {
   agregarAlumno() {
     const alumnos: AlumnosI = {
       id: this.form.value.id,
-      Nombre: this.form.value.nombre, 
-      Apellido: this.form.value.apellido, 
-      Edad: this.form.value.edad,
+      nombre: this.form.value.nombre, 
+      apellido: this.form.value.apellido, 
+      edad: this.form.value.edad,
     }
     
     this._alumnosService.agregarAlumno(alumnos);
