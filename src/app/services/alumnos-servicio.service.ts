@@ -11,19 +11,20 @@ urlAPI= 'https://62eb0894ad2954632597b90c.mockapi.io/api/alumnos';
 
   constructor(private httpClient: HttpClient) {}
 
-  getAlumno():Observable<AlumnosI>{
-    return this.httpClient.get<AlumnosI>(this.urlAPI + 'users');
+  getAlumno(){
+    return this.httpClient.get(this.urlAPI);
   }
   
-  eliminarAlumno(id:number) {
-    return this.httpClient.delete(this.urlAPI + 'users/:' + id);
+  
+  eliminarAlumno(index:number) {
+    return this.httpClient.delete(this.urlAPI + 'users/:' + index);
   }
 
   agregarAlumno(alumno: AlumnosI) {
-    return this.httpClient.post<AlumnosI>(this.urlAPI, alumno);
+    return this.httpClient.get(this.urlAPI + alumno);
   }
 
   editarAlumno (alumno: AlumnosI, id: number){
-    return this.httpClient.put<AlumnosI>(this.urlAPI + id, alumno);
+    return this.httpClient.get(this.urlAPI + alumno);
 }
 }

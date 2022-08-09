@@ -12,12 +12,12 @@
 
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef > No. </th>
-    <td mat-cell *matCellDef *ngFor="let alumno of alumnos"> {{alumno.id}} </td>
+    <td mat-cell *ngFor="let alumno of alumnos"> {{alumno.id}} </td>
   </ng-container>
 
   <ng-container matColumnDef="Nombre">
     <th mat-header-cell *matHeaderCellDef> Nombre </th>
-    <td mat-cell *matCellDef=*ngFor="let alumno of alumnos"> {{alumno.nombre}} </td>
+    <td mat-cell *ngFor="let alumno of alumnos"> {{alumno.nombre}} </td>
   </ng-container>
 
   <ng-container matColumnDef="Apellido">
@@ -27,23 +27,25 @@
 
   <ng-container matColumnDef="Edad">
     <th mat-header-cell *matHeaderCellDef> Edad </th>
-    <td mat-cell *matCellDef *ngFor="let alumno of alumnos""> {{alumno.edad}} </td>
+    <td mat-cell *ngFor="let alumno of alumnos"> {{alumno.edad}} </td>
   </ng-container>
 
   <ng-container matColumnDef="acciones">
     <th mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef *ngFor="let alumno of alumnos"; let i = index">
+    <td mat-cell *ngFor="let alumno of alumnos; let i = index">
     <a class="pointer" style="color: rgb(21, 96, 182);" routerLink="editar-alumno" matTooltip="Editar alumno">
         <mat-icon>edit</mat-icon>
     </a>
+    <a class="pointer"  routerLink="detalles-alumno" style="color: rgb(21, 96, 182)" matTooltip="Detalles alumno">  
+    <mat-icon  >
+        search
+    </mat-icon>
+</a>
     <a class="pointer" (click)="eliminarAlumno(i)" style="color: red;" matTooltip="Eliminar alumno">
       <mat-icon>delete</mat-icon>
   </a>
   </td>
   </ng-container>
-  
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  
+
 </table>
-<h2 *ngIf="alumno.length == 0"> No hay alumnos que mostrar</h2>
+<h2 *ngIf="alumnos.length == 0"> No hay alumnos que mostrar</h2>

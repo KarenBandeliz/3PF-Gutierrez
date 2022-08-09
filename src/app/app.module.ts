@@ -25,6 +25,7 @@ import { PanelComponent } from './shared/panel/panel.component';
 import { SharedModule } from './shared/shared.component';
 import { LoginComponent } from './alumnos/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DetallesAlumnoComponent } from './alumnos/detalles-alumno/detalles-alumno.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { HttpClientModule } from '@angular/common/http';
     AlumnosComponent,
     NuevoAlumnoComponent,
     LoginComponent,
+    DetallesAlumnoComponent,
 
   ],
   imports: [

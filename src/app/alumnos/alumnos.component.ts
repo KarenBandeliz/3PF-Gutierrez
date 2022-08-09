@@ -11,29 +11,24 @@ import { FormGroup } from '@angular/forms';
   templateUrl: './alumnos.component.html',
   styleUrls: ['./alumnos.component.scss']
 })
-
-
 export class AlumnosComponent implements OnInit {
-alumnos: AlumnosI[] = [];
+
+  @Input() alumnos: Array<AlumnosI> = [];
 
 constructor(private _alumnosServicioService: AlumnosServicioService) { }
 
   ngOnInit() {
-    this._alumnosServicioService.getAlumno();
-}  
 
-cargarAlumnos() {
-    this._alumnosServicioService.getAlumno().subscribe((data: AlumnosI) => {
-      this.alumnos = data;
-
-})
+  this._alumnosServicioService.getAlumno().subscribe(AlumnosI => {
+    console.log(AlumnosI);
+    this.alumnos = Object.assign([], AlumnosI);
+  })
 }
 
-  eliminarAlumno(id : number) {
-  console.log(id);
-    this._alumnosServicioService.getAlumno().subscribe((id) => {
-    this.alumnos(id);
-  this.cargarAlumnos();
+  eliminarAlumno(index: number) {
+    console.log(index);
+  this._alumnosServicioService.eliminarAlumno(index).subscribe((index => {
+    this.alumnos = Object.assign([], index);
+
 })
-}
 }
